@@ -207,16 +207,19 @@ end
 %=========================================================================%
 
 %% Prep
-load('ireland_mode.mat')
-params = xparam1;
-[dataset_,xparam2, hh, M_, options_, oo_, estim_params_,bayestopt_] = dynare_estimation_init(var_list_, [], [], M_, options_, oo_, estim_params_, bayestopt_);
-data_index = dataset_.missing.aindex;
-gend = options_.nobs;
-DDATA = dataset_.data;
+% load('ireland_mode.mat')
+% params = xparam1;
+% [dataset_,xparam2, hh, M_, options_, oo_, estim_params_,bayestopt_] = dynare_estimation_init(var_list_, [], [], M_, options_, oo_, estim_params_, bayestopt_);
+% data_index = dataset_.missing.aindex;
+% gend = options_.nobs;
+% DDATA = dataset_.data;
 
 %% Extract the estimated shocks
 % etahat = (r*T) matrix, smoothed structural shocks (r>n is the umber of shocks).
-[alphahat,etahat,epsilonhat,ahat,SteadyState,trend_coeff,aK,T,R,P,PK,decomp]=DsgeSmoother(params,gend,DDATA,data_index,0); 
+% [alphahat,etahat,epsilonhat,ahat,SteadyState,trend_coeff,aK,T,R,P,PK,decomp]=DsgeSmoother(params,gend,DDATA,data_index,0); 
+
+% Or extract the shocks from the oo_ object:
+etahat = [oo_.SmoothedShocks.epsilon_a, oo_.SmoothedShocks.epsilon_e, oo_.SmoothedShocks.epsilon_z, oo_.SmoothedShocks.epsilon_r]';
 
 %% Calculate the matrix norm as the degree of contemporaneous cross-correlation in the variance-covariance matrix. 
 cov(etahat')
