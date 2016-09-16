@@ -190,7 +190,7 @@ if estimatemodel == 1
 
     % This specifies the penalty weight
     % And allows us to pass a parameter to dsge_likelihood()
-    options_.custom_penalty = 1000;
+    options_.custom_penalty = 0;
 
     estimation(
         datafile = IrelandData,
