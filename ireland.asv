@@ -188,10 +188,6 @@ if estimatemodel == 1
     % output growth rate, the inflation rate, and the short-term nominal interest rate
     varobs g pi r;
 
-    % This specifies the penalty weight
-    % And allows us to pass a parameter to dsge_likelihood()
-    % options_.custom_penalty = 0;
-
     estimation(
         datafile = IrelandData,
         nobs = 108,
@@ -203,7 +199,7 @@ if estimatemodel == 1
 end
 
 %=========================================================================%
-%%%%                       CROSS-CORRELATION                           %%%%
+%%%%                           CALCULATE RUN                                  %%%%
 %=========================================================================%
 
 %% Prep
@@ -221,5 +217,3 @@ DDATA = dataset_.data;
 %% Calculate the matrix norm as the degree of contemporaneous cross-correlation in the variance-covariance matrix. 
 cov(etahat')
 V=corrcoef(etahat')
-Loss2 = norm(V-eye(4));
-

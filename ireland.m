@@ -158,6 +158,8 @@ M_.NNZDerivatives = zeros(3, 1);
 M_.NNZDerivatives(1) = 41;
 M_.NNZDerivatives(2) = 0;
 M_.NNZDerivatives(3) = -1;
+close all;
+estimatemodel = 1;
 M_.params( 1 ) = 1.0046;
 z = M_.params( 1 );
 M_.params( 2 ) = 0.9987;
@@ -221,6 +223,7 @@ options_.solve_algo = 1;
 options_.steady.maxit = 50000;
 steady;
 oo_.dr.eigval = check(M_,options_,oo_);
+if estimatemodel == 1
 global estim_params_
 estim_params_.var_exo = [];
 estim_params_.var_endo = [];
@@ -245,6 +248,17 @@ options_.nobs = 108;
 options_.order = 1;
 var_list_=[];
 dynare_estimation(var_list_);
+end
+load('ireland_mode.mat')
+params = xparam1;
+[dataset_,xparam2, hh, M_, options_, oo_, estim_params_,bayestopt_] = dynare_estimation_init(var_list_, [], [], M_, options_, oo_, estim_params_, bayestopt_);
+data_index = dataset_.missing.aindex;
+gend = options_.nobs;
+DDATA = dataset_.data;
+[alphahat,etahat,epsilonhat,ahat,SteadyState,trend_coeff,aK,T,R,P,PK,decomp]=DsgeSmoother(params,gend,DDATA,data_index,0); 
+cov(etahat')
+V=corrcoef(etahat')
+Loss2 = norm(V-eye(4));
 save('ireland_results.mat', 'oo_', 'M_', 'options_');
 if exist('estim_params_', 'var') == 1
   save('ireland_results.mat', 'estim_params_', '-append');
