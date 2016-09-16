@@ -240,6 +240,7 @@ estim_params_.var_exo = [estim_params_.var_exo; 1, 0.01, 0, 1, 0, NaN, NaN, NaN,
 estim_params_.var_exo = [estim_params_.var_exo; 2, 0.001, 0, 1, 0, NaN, NaN, NaN, NaN, NaN ];
 estim_params_.var_exo = [estim_params_.var_exo; 3, 0.01, 0, 1, 0, NaN, NaN, NaN, NaN, NaN ];
 estim_params_.var_exo = [estim_params_.var_exo; 4, 0.0025, 0, 1, 0, NaN, NaN, NaN, NaN, NaN ];
+options_.custom_penalty = 1000;
 options_.mode_compute = 1;
 options_.prefilter = 0;
 options_.datafile = 'IrelandData';
@@ -258,7 +259,7 @@ DDATA = dataset_.data;
 [alphahat,etahat,epsilonhat,ahat,SteadyState,trend_coeff,aK,T,R,P,PK,decomp]=DsgeSmoother(params,gend,DDATA,data_index,0); 
 cov(etahat')
 V=corrcoef(etahat')
-Loss2 = norm(V-eye(4));
+DegreeContemporaneousCC = norm(V-eye(4))
 save('ireland_results.mat', 'oo_', 'M_', 'options_');
 if exist('estim_params_', 'var') == 1
   save('ireland_results.mat', 'estim_params_', '-append');
