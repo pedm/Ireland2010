@@ -190,7 +190,7 @@ if estimatemodel == 1
 
     % This specifies the penalty weight
     % And allows us to pass a parameter to dsge_likelihood()
-    options_.custom_penalty = 0;
+    options_.custom_penalty = 1000;
 
     estimation(
         datafile = IrelandData,
@@ -222,7 +222,9 @@ end
 etahat = [oo_.SmoothedShocks.epsilon_a, oo_.SmoothedShocks.epsilon_e, oo_.SmoothedShocks.epsilon_z, oo_.SmoothedShocks.epsilon_r]';
 
 %% Calculate the matrix norm as the degree of contemporaneous cross-correlation in the variance-covariance matrix. 
-cov(etahat')
-V=corrcoef(etahat')
-DegreeContemporaneousCC = norm(V-eye(4))
+cov_matrix = cov(etahat')
+corrcoef_matrix=corrcoef(etahat')
+DegreeContemporaneousCC = norm(corrcoef_matrix-eye(4))
+
+cross_correlation_plots
 

@@ -860,19 +860,17 @@ epsilon_e   0.0026  0.0001 21.1999
 epsilon_z   0.0396  0.0007 54.5107 
 epsilon_r   0.0017  0.0001 21.6094 
 
-Loading 108 observations from IrelandData.mat
-
-ans =
+cov_matrix =
     0.0021    0.0000    0.0003    0.0000
     0.0000    0.0000    0.0000   -0.0000
     0.0003    0.0000    0.0009   -0.0000
     0.0000   -0.0000   -0.0000    0.0000
-V =
+corrcoef_matrix =
     1.0000    0.3041    0.2182    0.1027
     0.3041    1.0000    0.1186   -0.3139
     0.2182    0.1186    1.0000   -0.1300
     0.1027   -0.3139   -0.1300    1.0000
 DegreeContemporaneousCC =
     0.5163
-Total computing time : 0h00m16s
+Total computing time : 0h00m18s
 Note: warning(s) encountered in MATLAB/Octave code
