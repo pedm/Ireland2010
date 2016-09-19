@@ -190,7 +190,7 @@ if estimatemodel == 1
 
     % This specifies the penalty weight
     % And allows us to pass a parameter to dsge_likelihood()
-    options_.custom_penalty = 5000;
+    options_.custom_penalty = 1000;
 
     estimation(
         datafile = IrelandData,
@@ -228,3 +228,4 @@ DegreeContemporaneousCC = norm(corrcoef_matrix-eye(4))
 
 cross_correlation_plots
 
+Figure4_Counterfactual

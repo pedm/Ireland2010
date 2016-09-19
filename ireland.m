@@ -240,7 +240,7 @@ estim_params_.var_exo = [estim_params_.var_exo; 1, 0.01, 0, 1, 0, NaN, NaN, NaN,
 estim_params_.var_exo = [estim_params_.var_exo; 2, 0.001, 0, 1, 0, NaN, NaN, NaN, NaN, NaN ];
 estim_params_.var_exo = [estim_params_.var_exo; 3, 0.01, 0, 1, 0, NaN, NaN, NaN, NaN, NaN ];
 estim_params_.var_exo = [estim_params_.var_exo; 4, 0.0025, 0, 1, 0, NaN, NaN, NaN, NaN, NaN ];
-options_.custom_penalty = 5000;
+options_.custom_penalty = 1000;
 options_.mode_compute = 1;
 options_.prefilter = 0;
 options_.datafile = 'IrelandData';
@@ -255,6 +255,7 @@ cov_matrix = cov(etahat')
 corrcoef_matrix=corrcoef(etahat')
 DegreeContemporaneousCC = norm(corrcoef_matrix-eye(4))
 cross_correlation_plots
+Figure4_Counterfactual
 save('ireland_results.mat', 'oo_', 'M_', 'options_');
 if exist('estim_params_', 'var') == 1
   save('ireland_results.mat', 'estim_params_', '-append');

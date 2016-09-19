@@ -18,6 +18,7 @@ for ii = 1:3
         crosscorr(xx,yy, 10)
         title([xname(end), ' and ', yname(end), ' shocks'])
         ylabel('Cross Correlation')
+        ylim([-0.6 0.6])
         counter = counter+1;
     end
 end
