@@ -25,17 +25,17 @@ names = M_.exo_names;
 for ii = 1:4;
 
     % a shocks only
-    ex_a = zeros(size(ex_));
-    ex_a(:,ii) = ex_(:,ii)
-    simout_a = simult_(y0,dr,ex_a,iorder);
-    output_a = select_output(simout_a);
+    ex_counterfactual = zeros(size(ex_));
+    ex_counterfactual(:,ii) = ex_(:,ii)
+    simout_counter = simult_(y0,dr,ex_counterfactual,iorder);
+    output_counter = select_output(simout_counter);
 
     subplot(2,2,ii)
     plot(output_base, 'k--')
     ylim([-.05 .05])
 
     hold on;
-    plot(output_a, 'k')
+    plot(output_counter, 'k')
     hold off;
 
     name = names(ii, :)
